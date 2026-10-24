@@ -27,23 +27,22 @@ const projects = [
 ];
 
 export default function Home() {
-  const [darkMode, setDarkMode] = useState(true);
   const [year, setYear] = useState("2026");
   const [emailCopied, setEmailCopied] = useState(false);
+
   useEffect(() => {
     setYear(String(new Date().getFullYear()));
   }, []);
-  
 
   useEffect(() => {
     const elements = document.querySelectorAll(
       ".content-section, .projects-heading, .project-card, .contact-section"
     );
-  
+
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return;
     }
-  
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -55,44 +54,31 @@ export default function Home() {
       },
       { threshold: 0.12 }
     );
-  
+
     elements.forEach((element) => {
       element.classList.add("scroll-reveal");
       observer.observe(element);
     });
-  
+
     return () => observer.disconnect();
   }, []);
-  
-
 
   return (
-    <main
-      className={`site ${darkMode ? "theme-dark" : "theme-light"}`}
-    >
+    <main className="site theme-dark">
       <header className="nav">
-      <a href="/" className="brand">
-  <img
-    src="/images/shubhtechin-logo.png"
-    alt="ShubhTechIN"
-    className="brand-logo"
-  />
-</a>
+        <a href="#home" className="brand" aria-label="ShubhTechIN home">
+          <img
+            src="/images/shubhtechin-logo.png"
+            alt="ShubhTechIN"
+            className="brand-logo"
+          />
+        </a>
 
         <nav className="nav-links" aria-label="Main navigation">
           <a href="#about">About</a>
           <a href="#projects">Projects</a>
           <a href="#contact">Contact</a>
         </nav>
-
-        <button
-          className="theme-button"
-          onClick={() => setDarkMode((value) => !value)}
-          aria-label={`Switch to ${darkMode ? "light" : "dark"} mode`}
-        >
-          <span aria-hidden="true">{darkMode ? "☼" : "☾"}</span>
-          {darkMode ? "Light" : "Dark"}
-        </button>
       </header>
 
       <section id="home" className="hero section-wrap">
@@ -122,18 +108,18 @@ export default function Home() {
             </a>
           </div>
         </div>
-        
-<div className="hero-art reveal delay-3" aria-hidden="true">
-  <div className="orbit orbit-one" />
-  <div className="orbit orbit-two" />
-  <div className="orbit-core">
-    <span>&lt;/&gt;</span>
-  </div>
-  <span className="orbit-node node-one">JS</span>
-  <span className="orbit-node node-two">{"{}"}</span>
-  <span className="orbit-node node-three">✳</span>
-  <span className="orbit-caption">IDEAS → CODE → PRODUCTS</span>
-</div>
+
+        <div className="hero-art reveal delay-3" aria-hidden="true">
+          <div className="orbit orbit-one" />
+          <div className="orbit orbit-two" />
+          <div className="orbit-core">
+            <span>&lt;/&gt;</span>
+          </div>
+          <span className="orbit-node node-one">JS</span>
+          <span className="orbit-node node-two">{"{}"}</span>
+          <span className="orbit-node node-three">✳</span>
+          <span className="orbit-caption">IDEAS → CODE → PRODUCTS</span>
+        </div>
 
         <aside className="hero-aside reveal delay-3">
           <div className="availability">
@@ -200,7 +186,9 @@ export default function Home() {
           <div className="projects-heading">
             <div>
               <p className="eyebrow">02 / SELECTED WORK</p>
-              <h2>Things I'm building<span>.</span></h2>
+              <h2>
+                Things I'm building<span>.</span>
+              </h2>
             </div>
             <p className="section-note">
               Two independent products.
@@ -254,43 +242,46 @@ export default function Home() {
           I'm interested in learning, building useful products and
           connecting with people who care about good software.
         </p>
-      
-       
-<div className="contact-actions">
-  <button
-    className="primary-link"
-    onClick={async () => {
-      try {
-        await navigator.clipboard.writeText("shubhamsurve571@gmail.com");
-        setEmailCopied(true);
-        window.setTimeout(() => setEmailCopied(false), 2200);
-      } catch {
-        window.prompt("Copy your email address:", "shubhamsurve571@gmail.com");
-      }
-    }}
-  >
-    {emailCopied ? "Email copied!" : "Copy my email"}
-    <span aria-hidden="true">{emailCopied ? "✓" : "↗"}</span>
-  </button>
 
-  <a
-    href="https://github.com/Shubhsurve34"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="secondary-link"
-  >
-    GitHub <span aria-hidden="true">↗</span>
-  </a>
-</div>
-</section>
-      
+        <div className="contact-actions">
+          <button
+            className="primary-link"
+            onClick={async () => {
+              try {
+                await navigator.clipboard.writeText(
+                  "shubhamsurve571@gmail.com"
+                );
+                setEmailCopied(true);
+                window.setTimeout(() => setEmailCopied(false), 2200);
+              } catch {
+                window.prompt(
+                  "Copy your email address:",
+                  "shubhamsurve571@gmail.com"
+                );
+              }
+            }}
+          >
+            {emailCopied ? "Email copied!" : "Copy my email"}
+            <span aria-hidden="true">{emailCopied ? "✓" : "↗"}</span>
+          </button>
+
+          <a
+            href="https://github.com/Shubhsurve34"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="secondary-link"
+          >
+            GitHub <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </section>
 
       <footer className="footer section-wrap">
         <a href="#home" className="wordmark">
-        ShubhTechIN<span>.</span>
+          ShubhTechIN<span>.</span>
         </a>
         <p>Designed with intention. Built while learning.</p>
-        <p>© {2026} ShubhTechIN</p>
+        <p>© {year} ShubhTechIN</p>
       </footer>
     </main>
   );
