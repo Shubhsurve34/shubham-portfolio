@@ -1,69 +1,293 @@
-import Image from "next/image";
+
+"use client";
+
+import { useEffect, useState } from "react";
+
+const projects = [
+  {
+    number: "01",
+    type: "WEB APPLICATION",
+    title: "File Sharing Platform",
+    description:
+      "Building a dependable sharing experience with a focus on consistency, usability and thoughtful error handling.",
+    stack: "Next.js · TypeScript · Firebase",
+    status: "In development",
+    symbol: "↗",
+  },
+  {
+    number: "02",
+    type: "FOOTBALL ANALYTICS",
+    title: "Football Tactics Manager",
+    description:
+      "A tactical workspace for building formations, moving players across a pitch and saving ideas for future matches.",
+    stack: "React · SVG · Firebase",
+    status: "In development",
+    symbol: "↗",
+  },
+];
 
 export default function Home() {
+  const [darkMode, setDarkMode] = useState(true);
+  const [year, setYear] = useState("2026");
+  const [emailCopied, setEmailCopied] = useState(false);
+  useEffect(() => {
+    setYear(String(new Date().getFullYear()));
+  }, []);
+  
+
+  useEffect(() => {
+    const elements = document.querySelectorAll(
+      ".content-section, .projects-heading, .project-card, .contact-section"
+    );
+  
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+  
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+  
+    elements.forEach((element) => {
+      element.classList.add("scroll-reveal");
+      observer.observe(element);
+    });
+  
+    return () => observer.disconnect();
+  }, []);
+  
+
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <main
+      className={`site ${darkMode ? "theme-dark" : "theme-light"}`}
+    >
+      <header className="nav">
+        <a href="#home" className="wordmark">
+          shubham<span>.</span>
+        </a>
+
+        <nav className="nav-links" aria-label="Main navigation">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <button
+          className="theme-button"
+          onClick={() => setDarkMode((value) => !value)}
+          aria-label={`Switch to ${darkMode ? "light" : "dark"} mode`}
+        >
+          <span aria-hidden="true">{darkMode ? "☼" : "☾"}</span>
+          {darkMode ? "Light" : "Dark"}
+        </button>
+      </header>
+
+      <section id="home" className="hero section-wrap">
+        <div className="hero-copy">
+          <p className="eyebrow reveal delay-1">
+            COMPUTER ENGINEERING · WEB DEVELOPMENT
+          </p>
+
+          <h1 className="hero-title reveal delay-2">
+            Learning to build.
+            <br />
+            <span>Building to learn.</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+          <p className="hero-description reveal delay-3">
+            I'm Shubham, a computer engineering student exploring
+            software development by turning ideas into useful,
+            well-crafted digital products.
+          </p>
+
+          <div className="hero-actions reveal delay-3">
+            <a className="primary-link" href="#projects">
+              Explore my work <span aria-hidden="true">↘</span>
+            </a>
+            <a className="text-link" href="#about">
+              A little about me <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+        
+<div className="hero-art reveal delay-3" aria-hidden="true">
+  <div className="orbit orbit-one" />
+  <div className="orbit orbit-two" />
+  <div className="orbit-core">
+    <span>&lt;/&gt;</span>
+  </div>
+  <span className="orbit-node node-one">JS</span>
+  <span className="orbit-node node-two">{"{}"}</span>
+  <span className="orbit-node node-three">✳</span>
+  <span className="orbit-caption">IDEAS → CODE → PRODUCTS</span>
+</div>
+
+        <aside className="hero-aside reveal delay-3">
+          <div className="availability">
+            <span className="status-dot" />
+            CURRENTLY BUILDING
+          </div>
+
+          <div className="aside-rule" />
+
+          <p className="aside-label">MY APPROACH</p>
+          <p className="aside-text">
+            Understand the problem.
+            <br />
+            Build the simplest solution.
+            <br />
+            Make it work reliably.
+          </p>
+
+          <div className="aside-rule" />
+
+          <p className="aside-label">AREAS OF INTEREST</p>
+          <div className="interest-list">
+            <span>Web development</span>
+            <span>Product thinking</span>
+            <span>Football tactics</span>
+          </div>
+        </aside>
+
+        <div className="hero-index">
+          <span>INDEPENDENT PROJECTS</span>
+          <span>01 — 03</span>
+        </div>
+      </section>
+
+      <section id="about" className="content-section section-wrap">
+        <div className="section-heading">
+          <p className="eyebrow">01 / ABOUT</p>
+          <h2>
+            Curious by nature.
+            <br />
+            <span>Practical by design.</span>
+          </h2>
+        </div>
+
+        <div className="about-copy">
+          <p>
+            I'm pursuing a Diploma in Computer Engineering and
+            developing my skills through hands-on projects.
+          </p>
+          <p>
+            I enjoy understanding how products work, solving
+            problems step by step and improving the details that
+            make an application feel dependable.
+          </p>
+          <p>
+            This portfolio is where I'll document what I build,
+            what I learn and how each project evolves.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section id="projects" className="projects-section">
+        <div className="section-wrap">
+          <div className="projects-heading">
+            <div>
+              <p className="eyebrow">02 / SELECTED WORK</p>
+              <h2>Things I'm building<span>.</span></h2>
+            </div>
+            <p className="section-note">
+              Two independent products.
+              <br />
+              Built from the ground up.
+            </p>
+          </div>
+
+          <div className="project-list">
+            {projects.map((project) => (
+              <article className="project-card" key={project.number}>
+                <div className="project-number">{project.number}</div>
+
+                <div className="project-main">
+                  <p className="project-type">{project.type}</p>
+                  <h3>{project.title}</h3>
+                  <p className="project-description">
+                    {project.description}
+                  </p>
+                  <p className="project-stack">{project.stack}</p>
+                </div>
+
+                <div className="project-meta">
+                  <span className="project-status">
+                    <span className="status-dot" />
+                    {project.status}
+                  </span>
+                  <span className="project-arrow" aria-hidden="true">
+                    {project.symbol}
+                  </span>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <p className="projects-footnote">
+            These projects are works in progress. Live demo links will
+            appear here after the applications are deployed.
+          </p>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section id="contact" className="contact-section section-wrap">
+        <p className="eyebrow">03 / CONTACT</p>
+        <h2>
+          Have an idea?
+          <br />
+          <span>Let's talk.</span>
+        </h2>
+        <p className="contact-description">
+          I'm interested in learning, building useful products and
+          connecting with people who care about good software.
+        </p>
+      
+       
+<div className="contact-actions">
+  <button
+    className="primary-link"
+    onClick={async () => {
+      try {
+        await navigator.clipboard.writeText("shubhamsurve571@gmail.com");
+        setEmailCopied(true);
+        window.setTimeout(() => setEmailCopied(false), 2200);
+      } catch {
+        window.prompt("Copy your email address:", "shubhamsurve571@gmail.com");
+      }
+    }}
+  >
+    {emailCopied ? "Email copied!" : "Copy my email"}
+    <span aria-hidden="true">{emailCopied ? "✓" : "↗"}</span>
+  </button>
+
+  <a
+    href="https://github.com/Shubhsurve34"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="secondary-link"
+  >
+    GitHub <span aria-hidden="true">↗</span>
+  </a>
+</div>
+</section>
+      
+
+      <footer className="footer section-wrap">
+        <a href="#home" className="wordmark">
+          shubham<span>.</span>
+        </a>
+        <p>Designed with intention. Built while learning.</p>
+        <p>© {year} Shubham</p>
+      </footer>
+    </main>
   );
 }
