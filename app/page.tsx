@@ -26,6 +26,21 @@ const projects = [
   },
 ];
 
+const skillGroups = [
+  {
+    title: "PROGRAMMING",
+    skills: ["C", "C++", "Java", "Python"],
+  },
+  {
+    title: "WEB DEVELOPMENT",
+    skills: ["HTML", "CSS", "JavaScript", "React", "Next.js"],
+  },
+  {
+    title: "DATABASES & TOOLS",
+    skills: ["SQL", "Git", "GitHub", "VS Code"],
+  },
+];
+
 export default function Home() {
   const [year, setYear] = useState("2026");
   const [emailCopied, setEmailCopied] = useState(false);
@@ -36,7 +51,7 @@ export default function Home() {
 
   useEffect(() => {
     const elements = document.querySelectorAll(
-      ".content-section, .projects-heading, .project-card, .contact-section"
+      ".content-section, .skills-section, .projects-heading, .project-card, .contact-section"
     );
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -76,6 +91,7 @@ export default function Home() {
 
         <nav className="nav-links" aria-label="Main navigation">
           <a href="#about">About</a>
+          <a href="#skills">Skills</a>
           <a href="#projects">Projects</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -150,7 +166,7 @@ export default function Home() {
 
         <div className="hero-index">
           <span>INDEPENDENT PROJECTS</span>
-          <span>01 — 03</span>
+          <span>01 — 02</span>
         </div>
       </section>
 
@@ -181,15 +197,49 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="skills" className="skills-section section-wrap">
+        <div className="section-heading">
+          <p className="eyebrow">02 / SKILLS & EDUCATION</p>
+          <h2>
+            Tools I work with.
+            <br />
+            <span>Knowledge I'm building.</span>
+          </h2>
+        </div>
+
+        <div className="skills-grid">
+          {skillGroups.map((group) => (
+            <article className="skill-card" key={group.title}>
+              <p className="eyebrow">{group.title}</p>
+
+              <div className="skill-tags">
+                {group.skills.map((skill) => (
+                  <span className="skill-tag" key={skill}>
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="education-card">
+          <p className="eyebrow">EDUCATION</p>
+          <h3>Diploma in Computer Engineering</h3>
+          <p>St. Xavier’s Technical Institute, Mumbai</p>
+        </div>
+      </section>
+
       <section id="projects" className="projects-section">
         <div className="section-wrap">
           <div className="projects-heading">
             <div>
-              <p className="eyebrow">02 / SELECTED WORK</p>
+              <p className="eyebrow">03 / SELECTED WORK</p>
               <h2>
                 Things I'm building<span>.</span>
               </h2>
             </div>
+
             <p className="section-note">
               Two independent products.
               <br />
@@ -216,6 +266,7 @@ export default function Home() {
                     <span className="status-dot" />
                     {project.status}
                   </span>
+
                   <span className="project-arrow" aria-hidden="true">
                     {project.symbol}
                   </span>
@@ -232,12 +283,14 @@ export default function Home() {
       </section>
 
       <section id="contact" className="contact-section section-wrap">
-        <p className="eyebrow">03 / CONTACT</p>
+        <p className="eyebrow">04 / CONTACT</p>
+
         <h2>
           Have an idea?
           <br />
           <span>Let's talk.</span>
         </h2>
+
         <p className="contact-description">
           I'm interested in learning, building useful products and
           connecting with people who care about good software.
@@ -280,6 +333,7 @@ export default function Home() {
         <a href="#home" className="wordmark">
           ShubhTechIN<span>.</span>
         </a>
+
         <p>Designed with intention. Built while learning.</p>
         <p>© {year} ShubhTechIN</p>
       </footer>

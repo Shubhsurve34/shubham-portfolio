@@ -1563,3 +1563,310 @@ body {
     height: 36px;
   }
 }
+
+/* Skills and Education */
+.skills-section {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 36px;
+}
+
+.skill-card,
+.education-card {
+  padding: 26px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface, rgba(255, 255, 255, 0.025));
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.skill-tag {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  font-size: 13px;
+}
+
+.education-card {
+  margin-top: 18px;
+}
+
+.education-card h3 {
+  margin: 16px 0 8px;
+}
+
+.education-card p:last-child {
+  color: var(--muted);
+}
+
+@media (max-width: 760px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-section {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+}
+
+
+/* =========================================
+   SHUBHTECHIN — SKILLS & EDUCATION
+========================================= */
+
+.skills-section {
+  position: relative;
+  padding-top: 110px;
+  padding-bottom: 110px;
+}
+
+.skills-section .section-heading {
+  margin-bottom: 44px;
+}
+
+.skills-section .section-heading h2 {
+  max-width: 800px;
+  letter-spacing: -0.055em;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 42px;
+  align-items: stretch;
+}
+
+.skill-card {
+  position: relative;
+  min-width: 0;
+  min-height: 235px;
+  padding: 25px 23px;
+  overflow: hidden;
+  border: 1px solid rgba(198, 255, 107, 0.13);
+  border-radius: 16px;
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(198, 255, 107, 0.055),
+      transparent 48%
+    ),
+    #111116;
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    background 220ms ease;
+}
+
+.skill-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 22px;
+  width: 42px;
+  height: 2px;
+  background: #c6ff6b;
+  opacity: 0.75;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(198, 255, 107, 0.42);
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(198, 255, 107, 0.09),
+      transparent 48%
+    ),
+    #15151b;
+}
+
+.skill-card .eyebrow {
+  margin: 4px 0 0;
+  color: #c6ff6b;
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 0.13em;
+}
+
+.skill-card::after {
+  content: "SKILLS";
+  position: absolute;
+  right: 18px;
+  top: 23px;
+  color: rgba(255, 255, 255, 0.18);
+  font-family: monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 9px;
+  margin-top: 31px;
+}
+
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 7px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.025);
+  color: #e8e7ef;
+  font-size: 12px;
+  line-height: 1.3;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.skill-tag:hover {
+  color: #c6ff6b;
+  border-color: rgba(198, 255, 107, 0.4);
+  background: rgba(198, 255, 107, 0.06);
+}
+
+/* Education — feature panel */
+
+.education-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 18px 24px;
+  margin-top: 18px;
+  padding: 29px;
+  overflow: hidden;
+  border: 1px solid rgba(198, 255, 107, 0.19);
+  border-radius: 16px;
+  background:
+    linear-gradient(
+      110deg,
+      rgba(198, 255, 107, 0.065),
+      transparent 65%
+    ),
+    #111116;
+}
+
+.education-card .eyebrow {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: #c6ff6b;
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+}
+
+.education-card h3 {
+  margin: 0 0 8px;
+  color: #f4f2fa;
+  font-size: clamp(18px, 2vw, 23px);
+  letter-spacing: -0.035em;
+}
+
+.education-card > p:last-child {
+  margin: 0;
+  color: #a5a2b4;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.education-card::after {
+  content: "EDU / 01";
+  display: grid;
+  place-items: center;
+  width: 88px;
+  height: 88px;
+  border: 1px solid rgba(198, 255, 107, 0.2);
+  border-radius: 50%;
+  color: #c6ff6b;
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  background: rgba(198, 255, 107, 0.035);
+}
+
+/* Respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-card,
+  .skill-tag {
+    transition: none;
+  }
+
+  .skill-card:hover {
+    transform: none;
+  }
+}
+
+/* Responsive layout */
+
+@media (max-width: 900px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .skill-card:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .skills-section {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  .skills-section .section-heading {
+    margin-bottom: 30px;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .skill-card,
+  .skill-card:last-child {
+    grid-column: auto;
+    min-height: 180px;
+    padding: 23px 20px;
+  }
+
+  .skill-tags {
+    gap: 8px;
+    margin-top: 26px;
+  }
+
+  .education-card {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 23px 20px;
+  }
+
+  .education-card::after {
+    width: 64px;
+    height: 64px;
+  }
+}
+
