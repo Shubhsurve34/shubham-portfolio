@@ -1493,3 +1493,73 @@ body {
     transition: none;
   }
 }
+.brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  display: block;
+  width: 150px;
+  height: 44px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+@media (max-width: 600px) {
+  .brand-logo {
+    width: 120px;
+    height: 36px;
+  }
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.brand-logo {
+  display: block;
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.hero > img,
+.hero > .hero-logo {
+  display: none;
+}
+
+@media (max-width: 500px) {
+  .brand-logo {
+    width: 250px;
+    height: 200px;
+  }
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  height: 44px;
+  text-decoration: none;
+}
+
+.brand-logo {
+  display: block;
+  width: 220px;
+  height: 44px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+@media (max-width: 600px) {
+  .brand-logo {
+    width: 155px;
+    height: 36px;
+  }
+}

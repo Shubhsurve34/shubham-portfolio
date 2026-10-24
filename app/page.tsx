@@ -71,9 +71,13 @@ export default function Home() {
       className={`site ${darkMode ? "theme-dark" : "theme-light"}`}
     >
       <header className="nav">
-        <a href="#home" className="wordmark">
-          shubham<span>.</span>
-        </a>
+      <a href="/" className="brand">
+  <img
+    src="/images/shubhtechin-logo.png"
+    alt="ShubhTechIN"
+    className="brand-logo"
+  />
+</a>
 
         <nav className="nav-links" aria-label="Main navigation">
           <a href="#about">About</a>
@@ -283,10 +287,10 @@ export default function Home() {
 
       <footer className="footer section-wrap">
         <a href="#home" className="wordmark">
-          shubham<span>.</span>
+        ShubhTechIN<span>.</span>
         </a>
         <p>Designed with intention. Built while learning.</p>
-        <p>© {year} Shubham</p>
+        <p>© {2026} ShubhTechIN</p>
       </footer>
     </main>
   );
