@@ -94,6 +94,13 @@ export default function Home() {
           <a href="#skills">Skills</a>
           <a href="#projects">Projects</a>
           <a href="#contact">Contact</a>
+          <a
+            href="https://www.linkedin.com/in/shubhamsurve11"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn ↗
+          </a>
         </nav>
       </header>
 
@@ -332,6 +339,14 @@ export default function Home() {
             className="secondary-link"
           >
             GitHub <span aria-hidden="true">↗</span>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/shubhamsurve11"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="secondary-link"
+          >
+            LinkedIn <span aria-hidden="true">↗</span>
           </a>
         </div>
       </section>
