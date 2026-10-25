@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -26,6 +27,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.png", type: "image/png", sizes: "32x32" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: {
     type: "website",
     url: siteUrl,
@@ -34,12 +42,21 @@ export const metadata: Metadata = {
     description:
       "Computer engineering student exploring software development through practical projects and continuous learning.",
     locale: "en_IN",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "ShubhTechIN developer portfolio by Shubham Surve",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "ShubhTechIN | Shubham Surve — Developer Portfolio",
     description:
       "Computer engineering student exploring software development through practical projects and continuous learning.",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
