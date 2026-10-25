@@ -6,20 +6,30 @@ import { useEffect, useState } from "react";
 const projects = [
   {
     number: "01",
-    type: "WEB APPLICATION",
-    title: "File Sharing Platform",
+    type: "CAPSTONE · TEAM PROJECT",
+    title: "CrowDgrid",
     description:
-      "Building a dependable sharing experience with a focus on consistency, usability and thoughtful error handling.",
-    stack: "Next.js · TypeScript · Firebase",
+      "A final-year Diploma in Computer Engineering capstone project being developed collaboratively with my team. More details will be added as the project progresses.",
+    stack: "Team capstone · Details in progress",
     status: "In development",
     symbol: "↗",
   },
   {
     number: "02",
-    type: "FOOTBALL ANALYTICS",
-    title: "Football Tactics Manager",
+    type: "WEB APPLICATION",
+    title: "DropNexa",
     description:
-      "A tactical workspace for building formations, moving players across a pitch and saving ideas for future matches.",
+      "Building a dependable file-sharing experience with a focus on consistency, usability and thoughtful error handling.",
+    stack: "Next.js · TypeScript · Firebase",
+    status: "In development",
+    symbol: "↗",
+  },
+  {
+    number: "03",
+    type: "FOOTBALL ANALYTICS",
+    title: "Tactora",
+    description:
+      "A football tactics planning tool for creating formations, arranging player positions and visualizing match strategies.",
     stack: "React · SVG · Firebase",
     status: "In development",
     symbol: "↗",
@@ -38,6 +48,15 @@ const skillGroups = [
   {
     title: "DATABASES & TOOLS",
     skills: ["SQL", "Git", "GitHub", "VS Code"],
+  },
+  {
+    title: "WORKING STYLE",
+    skills: [
+      "Problem-solving",
+      "Teamwork",
+      "Adaptability",
+      "Willingness to learn",
+    ],
   },
 ];
 
@@ -99,7 +118,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            LinkedIn 
+            LinkedIn ↗
           </a>
         </nav>
       </header>
@@ -124,17 +143,19 @@ export default function Home() {
 
           <div className="hero-actions reveal delay-3">
             <a className="primary-link" href="#projects">
-              Explore my work <span aria-hidden="true"></span>
+              Explore my work <span aria-hidden="true">↘</span>
             </a>
+
             <a className="text-link" href="#about">
-              A little about me <span aria-hidden="true"></span>
+              A little about me <span aria-hidden="true">→</span>
             </a>
+
             <a
               className="text-link"
               href="/Shubham-Surve-Resume.pdf"
               download="Shubham-Surve-Resume.pdf"
             >
-              Download Resume <span aria-hidden="true"></span>
+              Download Resume <span aria-hidden="true">↓</span>
             </a>
           </div>
         </div>
@@ -170,17 +191,17 @@ export default function Home() {
 
           <div className="aside-rule" />
 
-          <p className="aside-label">AREAS OF INTEREST</p>
+          <p className="aside-label">CURRENT FOCUS</p>
           <div className="interest-list">
-            <span>Web development</span>
-            <span>Product thinking</span>
-            <span>Football tactics</span>
+            <span>Software development</span>
+            <span>Team capstone project</span>
+            <span>Internship opportunities</span>
           </div>
         </aside>
 
         <div className="hero-index">
           <span>INDEPENDENT PROJECTS</span>
-          <span>01 — 02</span>
+          <span>01 — 03</span>
         </div>
       </section>
 
@@ -196,17 +217,23 @@ export default function Home() {
 
         <div className="about-copy">
           <p>
-            I'm pursuing a Diploma in Computer Engineering and
-            developing my skills through hands-on projects.
+            I'm a Diploma in Computer Engineering student at
+            St. Xavier’s Technical Institute, Mumbai, building my
+            software development skills through practical work.
           </p>
+
           <p>
-            I enjoy understanding how products work, solving
-            problems step by step and improving the details that
-            make an application feel dependable.
+            I enjoy breaking problems into manageable steps,
+            learning new tools and turning ideas into useful
+            applications. I value clear communication, teamwork
+            and improving a product through feedback.
           </p>
+
           <p>
-            This portfolio is where I'll document what I build,
-            what I learn and how each project evolves.
+            I'm currently developing CrowDgrid with my team as our
+            final-year diploma capstone project, and I'm looking
+            for opportunities to learn from real-world engineering
+            work and contribute as an intern.
           </p>
         </div>
       </section>
@@ -255,9 +282,9 @@ export default function Home() {
             </div>
 
             <p className="section-note">
-              Two independent products.
+              Individual builds and a team capstone.
               <br />
-              Built from the ground up.
+              All currently in development.
             </p>
           </div>
 
@@ -290,8 +317,8 @@ export default function Home() {
           </div>
 
           <p className="projects-footnote">
-            These projects are works in progress. Live demo links will
-            appear here after the applications are deployed.
+            These projects are works in progress. More details and live
+            demo links will be added as the applications develop and are deployed.
           </p>
         </div>
       </section>
@@ -306,8 +333,9 @@ export default function Home() {
         </h2>
 
         <p className="contact-description">
-          I'm interested in learning, building useful products and
-          connecting with people who care about good software.
+          I'm open to internship opportunities where I can contribute,
+          learn from experienced developers and keep improving my
+          software engineering skills. Feel free to reach out.
         </p>
 
         <div className="contact-actions">
@@ -328,8 +356,8 @@ export default function Home() {
               }
             }}
           >
-            {emailCopied ? "Email copied!" : "Email"}
-            <span aria-hidden="true">{emailCopied ?"":""}</span>
+            {emailCopied ? "Email copied!" : "Copy my email"}
+            <span aria-hidden="true">{emailCopied ? "✓" : "↗"}</span>
           </button>
 
           <a
@@ -338,15 +366,16 @@ export default function Home() {
             rel="noopener noreferrer"
             className="secondary-link"
           >
-            GitHub <span aria-hidden="true"></span>
+            GitHub <span aria-hidden="true">↗</span>
           </a>
+
           <a
             href="https://www.linkedin.com/in/shubhamsurve11"
             target="_blank"
             rel="noopener noreferrer"
             className="secondary-link"
           >
-            LinkedIn <span aria-hidden="true"></span>
+            LinkedIn <span aria-hidden="true">↗</span>
           </a>
         </div>
       </section>
@@ -357,7 +386,7 @@ export default function Home() {
         </a>
 
         <p>Designed with intention. Built while learning.</p>
-        <p>© {2026} ShubhTechIN</p>
+        <p>© {year} ShubhTechIN</p>
       </footer>
     </main>
   );
