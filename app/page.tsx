@@ -122,6 +122,13 @@ export default function Home() {
             <a className="text-link" href="#about">
               A little about me <span aria-hidden="true">→</span>
             </a>
+            <a
+              className="text-link"
+              href="/Shubham-Surve-Resume.pdf"
+              download="Shubham-Surve-Resume.pdf"
+            >
+              Download Resume <span aria-hidden="true">↓</span>
+            </a>
           </div>
         </div>
 
