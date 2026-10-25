@@ -7,12 +7,11 @@ const projects = [
   {
     number: "01",
     type: "CAPSTONE · TEAM PROJECT",
-    title: "CrowDgrid",
+    title: "CrowdGrid",
     description:
       "A final-year Diploma in Computer Engineering capstone project being developed collaboratively with my team. More details will be added as the project progresses.",
     stack: "Team capstone · Details in progress",
     status: "In development",
-    symbol: "↗",
   },
   {
     number: "02",
@@ -22,7 +21,6 @@ const projects = [
       "Building a dependable file-sharing experience with a focus on consistency, usability and thoughtful error handling.",
     stack: "Next.js · TypeScript · Firebase",
     status: "In development",
-    symbol: "↗",
   },
   {
     number: "03",
@@ -32,7 +30,6 @@ const projects = [
       "A football tactics planning tool for creating formations, arranging player positions and visualizing match strategies.",
     stack: "React · SVG · Firebase",
     status: "In development",
-    symbol: "↗",
   },
 ];
 
@@ -97,6 +94,19 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
+  async function copyEmail() {
+    try {
+      await navigator.clipboard.writeText("shubhamsurve571@gmail.com");
+      setEmailCopied(true);
+      window.setTimeout(() => setEmailCopied(false), 2200);
+    } catch {
+      window.prompt(
+        "Copy your email address:",
+        "shubhamsurve571@gmail.com"
+      );
+    }
+  }
+
   return (
     <main className="site theme-dark">
       <header className="nav">
@@ -118,7 +128,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            LinkedIn ↗
+            LinkedIn
           </a>
         </nav>
       </header>
@@ -143,11 +153,11 @@ export default function Home() {
 
           <div className="hero-actions reveal delay-3">
             <a className="primary-link" href="#projects">
-              Explore my work <span aria-hidden="true">↘</span>
+              Explore my work
             </a>
 
             <a className="text-link" href="#about">
-              A little about me <span aria-hidden="true">→</span>
+              A little about me
             </a>
 
             <a
@@ -155,7 +165,7 @@ export default function Home() {
               href="/Shubham-Surve-Resume.pdf"
               download="Shubham-Surve-Resume.pdf"
             >
-              Download Resume <span aria-hidden="true">↓</span>
+              Download Resume
             </a>
           </div>
         </div>
@@ -163,13 +173,18 @@ export default function Home() {
         <div className="hero-art reveal delay-3" aria-hidden="true">
           <div className="orbit orbit-one" />
           <div className="orbit orbit-two" />
+
           <div className="orbit-core">
             <span>&lt;/&gt;</span>
           </div>
+
           <span className="orbit-node node-one">JS</span>
           <span className="orbit-node node-two">{"{}"}</span>
           <span className="orbit-node node-three">✳</span>
-          <span className="orbit-caption">IDEAS → CODE → PRODUCTS</span>
+
+          <span className="orbit-caption">
+            IDEAS · CODE · PRODUCTS
+          </span>
         </div>
 
         <aside className="hero-aside reveal delay-3">
@@ -181,6 +196,7 @@ export default function Home() {
           <div className="aside-rule" />
 
           <p className="aside-label">MY APPROACH</p>
+
           <p className="aside-text">
             Understand the problem.
             <br />
@@ -192,6 +208,7 @@ export default function Home() {
           <div className="aside-rule" />
 
           <p className="aside-label">CURRENT FOCUS</p>
+
           <div className="interest-list">
             <span>Software development</span>
             <span>Team capstone project</span>
@@ -200,7 +217,7 @@ export default function Home() {
         </aside>
 
         <div className="hero-index">
-          <span>INDEPENDENT PROJECTS</span>
+          <span>PROJECTS</span>
           <span>01 — 03</span>
         </div>
       </section>
@@ -208,6 +225,7 @@ export default function Home() {
       <section id="about" className="content-section section-wrap">
         <div className="section-heading">
           <p className="eyebrow">01 / ABOUT</p>
+
           <h2>
             Curious by nature.
             <br />
@@ -230,8 +248,8 @@ export default function Home() {
           </p>
 
           <p>
-            I'm currently developing CrowDgrid with my team as our
-            final-year diploma capstone project, and I'm looking
+            I'm currently developing CrowdGrid with my team as our
+            final-year diploma capstone project. I'm also looking
             for opportunities to learn from real-world engineering
             work and contribute as an intern.
           </p>
@@ -241,6 +259,7 @@ export default function Home() {
       <section id="skills" className="skills-section section-wrap">
         <div className="section-heading">
           <p className="eyebrow">02 / SKILLS & EDUCATION</p>
+
           <h2>
             Tools I work with.
             <br />
@@ -276,6 +295,7 @@ export default function Home() {
           <div className="projects-heading">
             <div>
               <p className="eyebrow">03 / SELECTED WORK</p>
+
               <h2>
                 Things I'm building<span>.</span>
               </h2>
@@ -291,14 +311,19 @@ export default function Home() {
           <div className="project-list">
             {projects.map((project) => (
               <article className="project-card" key={project.number}>
-                <div className="project-number">{project.number}</div>
+                <div className="project-number">
+                  {project.number}
+                </div>
 
                 <div className="project-main">
                   <p className="project-type">{project.type}</p>
+
                   <h3>{project.title}</h3>
+
                   <p className="project-description">
                     {project.description}
                   </p>
+
                   <p className="project-stack">{project.stack}</p>
                 </div>
 
@@ -307,18 +332,15 @@ export default function Home() {
                     <span className="status-dot" />
                     {project.status}
                   </span>
-
-                  <span className="project-arrow" aria-hidden="true">
-                    {project.symbol}
-                  </span>
                 </div>
               </article>
             ))}
           </div>
 
           <p className="projects-footnote">
-            These projects are works in progress. More details and live
-            demo links will be added as the applications develop and are deployed.
+            These projects are works in progress. More details and
+            live demo links will be added as the applications develop
+            and are deployed.
           </p>
         </div>
       </section>
@@ -339,25 +361,8 @@ export default function Home() {
         </p>
 
         <div className="contact-actions">
-          <button
-            className="primary-link"
-            onClick={async () => {
-              try {
-                await navigator.clipboard.writeText(
-                  "shubhamsurve571@gmail.com"
-                );
-                setEmailCopied(true);
-                window.setTimeout(() => setEmailCopied(false), 2200);
-              } catch {
-                window.prompt(
-                  "Copy your email address:",
-                  "shubhamsurve571@gmail.com"
-                );
-              }
-            }}
-          >
-            {emailCopied ? "Email copied!" : "Copy my email"}
-            <span aria-hidden="true">{emailCopied ? "✓" : "↗"}</span>
+          <button className="primary-link" onClick={copyEmail}>
+            {emailCopied ? "Copied!" : "Email"}
           </button>
 
           <a
@@ -366,7 +371,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="secondary-link"
           >
-            GitHub <span aria-hidden="true">↗</span>
+            GitHub
           </a>
 
           <a
@@ -375,7 +380,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="secondary-link"
           >
-            LinkedIn <span aria-hidden="true">↗</span>
+            LinkedIn
           </a>
         </div>
       </section>

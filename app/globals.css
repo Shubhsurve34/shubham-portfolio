@@ -2066,3 +2066,31 @@ img {
     scroll-behavior: auto;
   }
 }
+
+/* Tactora — consistent project card styling */
+.project-card:nth-child(3) {
+  --card-accent: #9b8cff;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.project-card:nth-child(3)::before {
+  background: var(--card-accent);
+}
+
+.project-card:nth-child(3):hover {
+  border-color: var(--card-accent);
+  box-shadow: 0 22px 60px var(--glow);
+}
+
+.project-card:nth-child(3) .project-type {
+  color: var(--card-accent);
+}
+
+/* Keep all three project cards consistent on smaller screens */
+@media (max-width: 760px) {
+  .project-card:nth-child(3) {
+    min-width: 0;
+    width: 100%;
+  }
+}
