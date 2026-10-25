@@ -60,6 +60,7 @@ const skillGroups = [
 export default function Home() {
   const [year, setYear] = useState("2026");
   const [emailCopied, setEmailCopied] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     setYear(String(new Date().getFullYear()));
@@ -109,29 +110,59 @@ export default function Home() {
 
   return (
     <main className="site theme-dark">
-      <header className="nav">
-        <a href="#home" className="brand" aria-label="ShubhTechIN home">
-          <img
-            src="/images/shubhtechin-logo.png"
-            alt="ShubhTechIN"
-            className="brand-logo"
-          />
-        </a>
+      
+<header className="nav">
+  <a
+    href="#home"
+    className="brand"
+    aria-label="ShubhTechIN home"
+    onClick={() => setMenuOpen(false)}
+  >
+    <img
+      src="/images/shubhtechin-logo.png"
+      alt="ShubhTechIN"
+      className="brand-logo"
+    />
+  </a>
 
-        <nav className="nav-links" aria-label="Main navigation">
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
-          <a
-            href="https://www.linkedin.com/in/shubhamsurve11"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn
-          </a>
-        </nav>
-      </header>
+  <button
+    type="button"
+    className="mobile-menu-button"
+    aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+    aria-expanded={menuOpen}
+    aria-controls="main-navigation"
+    onClick={() => setMenuOpen((open) => !open)}
+  >
+    <span className={menuOpen ? "menu-icon menu-icon-open" : "menu-icon"}>
+      <span />
+      <span />
+      <span />
+    </span>
+    <span className="mobile-menu-label">
+      {menuOpen ? "Close" : "Menu"}
+    </span>
+  </button>
+
+  <nav
+    id="main-navigation"
+    className={`nav-links${menuOpen ? " nav-links-open" : ""}`}
+    aria-label="Main navigation"
+  >
+    <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
+    <a href="#skills" onClick={() => setMenuOpen(false)}>Skills</a>
+    <a href="#projects" onClick={() => setMenuOpen(false)}>Projects</a>
+    <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+    <a
+      href="https://www.linkedin.com/in/shubhamsurve11"
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() => setMenuOpen(false)}
+    >
+      LinkedIn
+    </a>
+  </nav>
+</header>
+
 
       <section id="home" className="hero section-wrap">
         <div className="hero-copy">
@@ -396,3 +427,4 @@ export default function Home() {
     </main>
   );
 }
+
