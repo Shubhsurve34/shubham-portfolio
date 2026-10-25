@@ -328,8 +328,8 @@ export default function Home() {
               }
             }}
           >
-            {emailCopied ? "Email copied!" : "Copy my email"}
-            <span aria-hidden="true">{emailCopied ? "✓" :}</span>
+            {emailCopied ? "Email copied!" : "Email"}
+            <span aria-hidden="true">{emailCopied ?"":""}</span>
           </button>
 
           <a
