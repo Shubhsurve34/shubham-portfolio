@@ -124,17 +124,17 @@ export default function Home() {
 
           <div className="hero-actions reveal delay-3">
             <a className="primary-link" href="#projects">
-              Explore my work <span aria-hidden="true">↘</span>
+              Explore my work <span aria-hidden="true"></span>
             </a>
             <a className="text-link" href="#about">
-              A little about me <span aria-hidden="true">→</span>
+              A little about me <span aria-hidden="true"></span>
             </a>
             <a
               className="text-link"
               href="/Shubham-Surve-Resume.pdf"
               download="Shubham-Surve-Resume.pdf"
             >
-              Download Resume <span aria-hidden="true">↓</span>
+              Download Resume <span aria-hidden="true"></span>
             </a>
           </div>
         </div>
@@ -329,7 +329,7 @@ export default function Home() {
             }}
           >
             {emailCopied ? "Email copied!" : "Copy my email"}
-            <span aria-hidden="true">{emailCopied ? "✓" : "↗"}</span>
+            <span aria-hidden="true">{emailCopied ? "✓" :}</span>
           </button>
 
           <a
@@ -338,7 +338,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="secondary-link"
           >
-            GitHub <span aria-hidden="true">↗</span>
+            GitHub <span aria-hidden="true"></span>
           </a>
           <a
             href="https://www.linkedin.com/in/shubhamsurve11"
@@ -346,7 +346,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="secondary-link"
           >
-            LinkedIn <span aria-hidden="true">↗</span>
+            LinkedIn <span aria-hidden="true"></span>
           </a>
         </div>
       </section>
@@ -357,7 +357,7 @@ export default function Home() {
         </a>
 
         <p>Designed with intention. Built while learning.</p>
-        <p>© {year} ShubhTechIN</p>
+        <p>© {2026} ShubhTechIN</p>
       </footer>
     </main>
   );
