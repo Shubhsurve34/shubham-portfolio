@@ -440,6 +440,8 @@ a {
   line-height: 0.95;
   text-align: center;
   color: var(--ok);
+  background: rgba(247, 249, 246, 0.9);
+  mix-blend-mode: normal;
   transform: rotate(-11deg);
   animation: stamp-in 0.5s 0.95s var(--ease-out) both;
 }
