@@ -32,13 +32,14 @@ const projects: Project[] = [
   },
   {
     name: "CrowdGrid",
-    kind: "Final-year capstone",
+    kind: "Pilgrim services for the Simhastha Kumbh",
     summary:
-      "Our Diploma in Computer Engineering capstone, built together as a team. I'll write it up properly once we ship it.",
+      "Verified stays, free meals, shuttles to the ghats and 24/7 SOS for pilgrims at the Simhastha Kumbh 2026–28 in Nashik and Trimbakeshwar. Everything a family books sits under one QR pass that works offline. Our final-year capstone, where I worked across the frontend and backend.",
     stack: [],
-    role: "Team project",
-    status: "In progress",
+    role: "Full-stack, team capstone",
+    status: "Live",
     accent: "ink",
+    link: { href: "https://crowdgrid.vercel.app", label: "Open CrowdGrid" },
   },
   {
     name: "Tactora",
@@ -197,7 +198,7 @@ export default function Home() {
           <div className="section-head">
             <h2 id="work-title">Things I&apos;ve built</h2>
             <p>
-              Two live, one with my team, and the next one on the bench. Every new one gets the
+              Three live, including our team capstone, and one on the bench. Every new one gets the
               same look, so you can tell they come from the same place.
             </p>
           </div>
