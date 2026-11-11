@@ -929,6 +929,21 @@ a {
     padding: 8px 10px;
   }
 
+  .ticket-stack li + li::before {
+    margin-right: 10px;
+  }
+
+  .ticket-stack {
+    gap: 6px 10px;
+  }
+}
+
+@media (max-width: 420px) {
+  /* "See my work" sits right under the bar, so Work can go */
+  .top-nav a[href="#work"] {
+    display: none;
+  }
+
   .hero-line {
     font-size: 18px;
   }
