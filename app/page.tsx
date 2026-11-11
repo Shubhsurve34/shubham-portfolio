@@ -255,7 +255,7 @@ export default function Home() {
               <p>
                 DropNexa is where most of that has happened. It taught me authentication, rate
                 limiting, encryption, payments and how much care goes into an error message. With my
-                team I&apos;m now building CrowdGrid, our capstone.
+                team I built CrowdGrid, our capstone, as a full-stack developer.
               </p>
               <p>
                 I&apos;m looking for an internship where I can work on real software with people
