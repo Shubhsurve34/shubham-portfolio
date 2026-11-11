@@ -936,13 +936,6 @@ a {
   .ticket-stack {
     gap: 6px 10px;
   }
-}
-
-@media (max-width: 420px) {
-  /* "See my work" sits right under the bar, so Work can go */
-  .top-nav a[href="#work"] {
-    display: none;
-  }
 
   .hero-line {
     font-size: 18px;
@@ -996,6 +989,13 @@ a {
   .contact-email {
     min-width: 0;
     width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  /* "See my work" sits right under the bar, so Work can go */
+  .top-nav a[href="#work"] {
+    display: none;
   }
 }
 
