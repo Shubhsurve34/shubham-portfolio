@@ -21,7 +21,7 @@ type Project = {
 
 const projects: Project[] = [
   {
-    name: "DropNexa",
+    name: "Dropzuu",
     kind: "File and text sharing",
     summary:
       "Send text, links and files through links that expire, lock with a password or open only once. It has accounts, drop inboxes that collect files from anyone, end-to-end encryption in the browser and Premium plans billed through Razorpay.",
@@ -29,7 +29,7 @@ const projects: Project[] = [
     role: "Solo build",
     status: "Live",
     accent: "carbon",
-    link: { href: "https://dropnexa-app.vercel.app", label: "Open DropNexa" },
+    link: { href: "https://dropnexa-app.vercel.app", label: "Open Dropzuu" },
   },
   {
     name: "CrowdGrid",
@@ -56,7 +56,7 @@ const projects: Project[] = [
     name: "ShubhTechIN",
     kind: "This site",
     summary:
-      "My portfolio and the home of everything I make. It sets the look DropNexa and my later projects share.",
+      "My portfolio and the home of everything I make. It sets the look Dropzuu and my later projects share.",
     stack: ["Next.js", "TypeScript", "CSS"],
     role: "Solo build",
     status: "Live",
@@ -174,7 +174,7 @@ export default function Home() {
             <StretchName lines={["Shubham", "Surve"]} />
             <p className="hero-line">
               I study computer engineering in Mumbai and build web apps people can actually use.
-              Right now that&apos;s <a href="#work">DropNexa</a>, a way to send things that
+              Right now that&apos;s <a href="#work">Dropzuu</a>, a way to send things that
               don&apos;t stick around.
             </p>
             <div className="hero-actions">
@@ -331,7 +331,7 @@ export default function Home() {
                 into small steps, ship something that works, then make it better.
               </p>
               <p>
-                DropNexa is where most of that has happened. It taught me authentication, rate
+                Dropzuu is where most of that has happened. It taught me authentication, rate
                 limiting, encryption, payments and how much care goes into an error message. With my
                 team I built CrowdGrid, our capstone, as a full-stack developer.
               </p>
@@ -425,7 +425,7 @@ export default function Home() {
         <p>
           Also from ShubhTechIN:{" "}
           <a href="https://dropnexa-app.vercel.app" target="_blank" rel="noopener noreferrer">
-            DropNexa
+            Dropzuu
           </a>
         </p>
         <p>© {year} Shubham Surve</p>
