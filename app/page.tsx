@@ -60,7 +60,6 @@ const projects: Project[] = [
     role: "Solo build",
     status: "Live",
     accent: "lime",
-    link: { href: "https://github.com/Shubhsurve34/shubham-portfolio", label: "View the code" },
   },
 ];
 
@@ -181,14 +180,16 @@ export default function Home() {
                 </div>
               </dl>
               <footer className="pass-foot">
-                <span>Valid from {year}</span>
-                <span className="pass-code" aria-hidden="true" />
+                <div className="pass-valid">
+                  <span>Valid from {year}</span>
+                  <span className="pass-code" aria-hidden="true" />
+                </div>
+                <span className="stamp pass-stamp">
+                  Open to
+                  <br />
+                  internships
+                </span>
               </footer>
-              <span className="stamp pass-stamp">
-                Open to
-                <br />
-                internships
-              </span>
             </article>
           </div>
         </section>

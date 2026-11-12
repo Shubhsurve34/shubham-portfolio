@@ -389,12 +389,17 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding-top: 14px;
+  gap: 16px;
+  padding-top: 16px;
   border-top: 1px solid var(--rule);
   font-size: 12px;
   font-weight: 600;
   color: var(--ink-faint);
+}
+
+.pass-valid {
+  display: grid;
+  gap: 8px;
 }
 
 .pass-code {
@@ -432,16 +437,13 @@ a {
 }
 
 .pass-stamp {
-  position: absolute;
-  right: 14px;
-  bottom: 12px;
+  flex: none;
+  margin-right: 4px;
   padding: 6px 12px;
   font-size: 26px;
   line-height: 0.95;
   text-align: center;
   color: var(--ok);
-  background: rgba(247, 249, 246, 0.9);
-  mix-blend-mode: normal;
   transform: rotate(-11deg);
   animation: stamp-in 0.5s 0.95s var(--ease-out) both;
 }
