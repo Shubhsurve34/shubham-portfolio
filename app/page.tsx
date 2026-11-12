@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Seen, StretchName, WorkPass } from "./effects";
 
 const EMAIL = "shubhamsurve571@gmail.com";
 const GITHUB = "https://github.com/Shubhsurve34";
@@ -130,11 +131,7 @@ export default function Home() {
         <section className="hero wrap">
           <div className="hero-copy">
             <p className="hero-hello">Hi, I&apos;m</p>
-            <h1 className="hero-name">
-              Shubham
-              <br />
-              Surve
-            </h1>
+            <StretchName lines={["Shubham", "Surve"]} />
             <p className="hero-line">
               I study computer engineering in Mumbai and build web apps people can actually use.
               Right now that&apos;s <a href="#work">DropNexa</a>, a way to send things that
@@ -150,48 +147,88 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="pass-holder">
-            <article className="pass" aria-label="Work pass">
-              <span className="pass-hole" aria-hidden="true" />
-              <header className="pass-head">
-                <Wordmark />
-                <span className="pass-kind">Work pass</span>
-              </header>
-              <dl className="pass-fields">
-                <div className="pass-field pass-field-wide">
-                  <dt>Name</dt>
-                  <dd className="pass-name">Shubham Anant Surve</dd>
+          <WorkPass
+            front={
+              <>
+                <span className="pass-hole" aria-hidden="true" />
+                <header className="pass-head">
+                  <Wordmark />
+                  <span className="pass-kind">Work pass</span>
+                </header>
+                <dl className="pass-fields">
+                  <div className="pass-field pass-field-wide">
+                    <dt>Name</dt>
+                    <dd className="pass-name">Shubham Anant Surve</dd>
+                  </div>
+                  <div className="pass-field pass-field-wide">
+                    <dt>Studying</dt>
+                    <dd>Diploma in Computer Engineering</dd>
+                  </div>
+                  <div className="pass-field pass-field-wide">
+                    <dt>At</dt>
+                    <dd>St. Xavier&apos;s Technical Institute, Mumbai</dd>
+                  </div>
+                  <div className="pass-field">
+                    <dt>Builds with</dt>
+                    <dd>Next.js and TypeScript</dd>
+                  </div>
+                  <div className="pass-field">
+                    <dt>Latest score</dt>
+                    <dd>87.66%</dd>
+                  </div>
+                </dl>
+                <footer className="pass-foot">
+                  <div className="pass-valid">
+                    <span>Valid from {year}</span>
+                    <span className="pass-code" aria-hidden="true" />
+                  </div>
+                  <span className="stamp pass-stamp">
+                    Open to
+                    <br />
+                    internships
+                  </span>
+                </footer>
+              </>
+            }
+            back={
+              <>
+                <span className="pass-hole" aria-hidden="true" />
+                <header className="pass-head">
+                  <Wordmark />
+                  <span className="pass-kind">Back of pass</span>
+                </header>
+                <div className="pass-found">
+                  <p className="pass-found-label">If found, please return to</p>
+                  <p className="pass-found-name">Shubham Surve</p>
                 </div>
-                <div className="pass-field pass-field-wide">
-                  <dt>Studying</dt>
-                  <dd>Diploma in Computer Engineering</dd>
-                </div>
-                <div className="pass-field pass-field-wide">
-                  <dt>At</dt>
-                  <dd>St. Xavier&apos;s Technical Institute, Mumbai</dd>
-                </div>
-                <div className="pass-field">
-                  <dt>Builds with</dt>
-                  <dd>Next.js and TypeScript</dd>
-                </div>
-                <div className="pass-field">
-                  <dt>Latest score</dt>
-                  <dd>87.66%</dd>
-                </div>
-              </dl>
-              <footer className="pass-foot">
-                <div className="pass-valid">
-                  <span>Valid from {year}</span>
-                  <span className="pass-code" aria-hidden="true" />
-                </div>
-                <span className="stamp pass-stamp">
-                  Open to
-                  <br />
-                  internships
-                </span>
-              </footer>
-            </article>
-          </div>
+                <ul className="pass-links">
+                  <li>
+                    <a href={`mailto:${EMAIL}`}>Email</a>
+                    <span>{EMAIL}</span>
+                  </li>
+                  <li>
+                    <a href={LINKEDIN} target="_blank" rel="noopener noreferrer">
+                      LinkedIn
+                    </a>
+                    <span>shubhamsurve11</span>
+                  </li>
+                  <li>
+                    <a href={GITHUB} target="_blank" rel="noopener noreferrer">
+                      GitHub
+                    </a>
+                    <span>Shubhsurve34</span>
+                  </li>
+                  <li>
+                    <a href={RESUME} download>
+                      Resume
+                    </a>
+                    <span>PDF, one page</span>
+                  </li>
+                </ul>
+                <p className="pass-back-note">No reward offered. A reply would be nice, though.</p>
+              </>
+            }
+          />
         </section>
 
         {/* Work */}
@@ -206,7 +243,7 @@ export default function Home() {
 
           <ol className="tickets">
             {projects.map((project) => (
-              <li key={project.name} className={`ticket accent-${project.accent}`}>
+              <Seen as="li" key={project.name} className={`ticket accent-${project.accent}`}>
                 <div className="ticket-main">
                   <p className="ticket-kind">{project.kind}</p>
                   <h3 className="ticket-name">{project.name}</h3>
@@ -235,7 +272,7 @@ export default function Home() {
                   </span>
                   <span className="ticket-role">{project.role}</span>
                 </div>
-              </li>
+              </Seen>
             ))}
           </ol>
         </section>
@@ -290,9 +327,9 @@ export default function Home() {
             <div className="edu-card">
               <h3>Diploma in Computer Engineering</h3>
               <p className="edu-where">St. Xavier&apos;s Technical Institute, Mumbai</p>
-              <ol className="grades" aria-label="Semester results">
-                {semesters.map((sem) => (
-                  <li key={sem.label}>
+              <Seen as="ol" className="grades">
+                {semesters.map((sem, i) => (
+                  <li key={sem.label} style={{ ["--i" as string]: i }}>
                     <span className="grade-label">{sem.label}</span>
                     <span className="grade-track">
                       <span className="grade-bar" style={{ width: `${sem.score}%` }} />
@@ -300,7 +337,7 @@ export default function Home() {
                     <span className="grade-value">{sem.score.toFixed(2)}%</span>
                   </li>
                 ))}
-              </ol>
+              </Seen>
               <p className="edu-note">Up every semester so far.</p>
             </div>
 
@@ -316,6 +353,9 @@ export default function Home() {
 
         {/* Contact */}
         <section id="contact" className="contact wrap" aria-labelledby="contact-title">
+          <span className={`stamp contact-stamp${copied ? " is-on" : ""}`} aria-hidden="true">
+            Copied
+          </span>
           <h2 id="contact-title">
             Have an internship, a project or a question? Write to me.
           </h2>

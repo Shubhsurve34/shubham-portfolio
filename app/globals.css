@@ -275,10 +275,33 @@ a {
   margin-top: 6px;
   font-family: var(--font-display);
   font-weight: 850;
-  font-stretch: 62%;
   font-size: clamp(76px, 12vw, 172px);
   line-height: 0.84;
   letter-spacing: -0.015em;
+}
+
+.name-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.name-letter {
+  font-variation-settings: "wdth" 62;
+  transition: font-variation-settings 0.35s var(--ease-out);
+  animation: name-squeeze 0.9s calc(var(--i) * 45ms) var(--ease-out) backwards;
+}
+
+@keyframes name-squeeze {
+  from {
+    font-variation-settings: "wdth" 150;
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  to {
+    font-variation-settings: "wdth" 62;
+  }
 }
 
 .hero-line {
@@ -305,18 +328,160 @@ a {
 .pass-holder {
   display: flex;
   justify-content: center;
-  perspective: 1200px;
+  perspective: 1100px;
+}
+
+.pass-enter {
+  width: min(100%, 400px);
+  transform: rotate(-3deg);
+  animation: pass-in 0.9s 0.35s var(--ease-out) both;
+}
+
+.pass-tilt {
+  --rx: 0deg;
+  --ry: 0deg;
+  --mx: 50%;
+  --my: 30%;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.pass-tilt[data-live="true"] {
+  transition: transform 0.12s linear;
+}
+
+.pass-card {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.3, 1.25, 0.4, 1);
+}
+
+.pass-card.is-flipped {
+  transform: rotateY(180deg);
 }
 
 .pass {
   position: relative;
-  width: min(100%, 400px);
+  width: 100%;
   padding: 34px 26px 22px;
   background: var(--slip);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
-  transform: rotate(-3deg);
-  animation: pass-in 0.9s 0.1s var(--ease-out) both;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.pass-back {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  transform: rotateY(180deg);
+}
+
+.pass-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at var(--mx) var(--my), rgba(200, 245, 60, 0.38), transparent 42%),
+    linear-gradient(
+      115deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.55) calc(var(--mx) * 0.6 + 10%),
+      transparent 70%
+    );
+  mix-blend-mode: soft-light;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.pass-tilt[data-live="true"] .pass-sheen {
+  opacity: 1;
+}
+
+.pass-turn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+  padding: 4px 10px;
+  border: 1.5px solid var(--rule);
+  border-radius: 999px;
+  background: var(--slip);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background-color 0.15s;
+}
+
+.pass-turn:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+  background: var(--lime);
+}
+
+/* Back of the pass */
+.pass-found {
+  padding: 22px 0 18px;
+}
+
+.pass-found-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-faint);
+}
+
+.pass-found-name {
+  font-family: var(--font-display);
+  font-weight: 850;
+  font-stretch: 66%;
+  font-size: 40px;
+  line-height: 1;
+}
+
+.pass-links {
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.pass-links li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 14px;
+}
+
+.pass-links a {
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--lime);
+  text-decoration-thickness: 0.42em;
+  text-underline-offset: -0.18em;
+  text-decoration-skip-ink: none;
+}
+
+.pass-links span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ink-soft);
+}
+
+.pass-back-note {
+  margin-top: auto;
+  padding-top: 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-faint);
 }
 
 .pass::after {
@@ -445,7 +610,7 @@ a {
   text-align: center;
   color: var(--ok);
   transform: rotate(-11deg);
-  animation: stamp-in 0.5s 0.95s var(--ease-out) both;
+  animation: stamp-in 0.5s 1.3s var(--ease-out) both;
 }
 
 @keyframes pass-in {
@@ -649,6 +814,29 @@ a {
   transform: rotate(-8deg);
 }
 
+.ticket[data-seen="false"] .ticket-stub .stamp {
+  opacity: 0;
+}
+
+.ticket[data-seen="true"] .ticket-stub .stamp {
+  animation: ticket-stamp 0.5s 0.2s var(--ease-out) both;
+}
+
+@keyframes ticket-stamp {
+  0% {
+    opacity: 0;
+    transform: rotate(-26deg) scale(2.3);
+  }
+  60% {
+    opacity: 0.9;
+    transform: rotate(-6deg) scale(0.92);
+  }
+  100% {
+    opacity: 0.85;
+    transform: rotate(-8deg) scale(1);
+  }
+}
+
 .stamp-live {
   color: var(--ok);
 }
@@ -776,6 +964,12 @@ a {
   height: 100%;
   border-radius: 999px;
   background: var(--ink);
+  transform-origin: left center;
+  transition: transform 1s var(--ease-out) calc(var(--i, 0) * 140ms);
+}
+
+.grades[data-seen="false"] .grade-bar {
+  transform: scaleX(0);
 }
 
 .grades li:last-child .grade-bar {
@@ -817,6 +1011,7 @@ a {
    -------------------------------------------------------------------------- */
 
 .contact {
+  position: relative;
   margin-top: 24px;
   padding: 64px 56px;
   background: var(--ink);
@@ -865,6 +1060,33 @@ a {
 
 .contact-email {
   min-width: 290px;
+}
+
+.contact-stamp {
+  position: absolute;
+  top: 34px;
+  right: 40px;
+  font-size: 34px;
+  color: var(--lime);
+  mix-blend-mode: normal;
+  opacity: 0;
+  transform: rotate(-12deg) scale(2);
+  pointer-events: none;
+}
+
+.contact-stamp.is-on {
+  animation: contact-stamp 0.45s var(--ease-out) forwards;
+}
+
+@keyframes contact-stamp {
+  60% {
+    opacity: 1;
+    transform: rotate(-10deg) scale(0.92);
+  }
+  100% {
+    opacity: 0.9;
+    transform: rotate(-12deg) scale(1);
+  }
 }
 
 .contact-hint {
@@ -993,6 +1215,12 @@ a {
   .contact-email {
     min-width: 0;
     width: 100%;
+  }
+
+  .contact-stamp {
+    top: 14px;
+    right: 14px;
+    font-size: 24px;
   }
 }
 
