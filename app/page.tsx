@@ -94,13 +94,53 @@ export default function Home() {
     return () => window.clearTimeout(id);
   }, []);
 
+  const [copyFailed, setCopyFailed] = useState(false);
+
+  function legacyCopy(text: string) {
+    const area = document.createElement("textarea");
+    area.value = text;
+    area.setAttribute("readonly", "");
+    area.style.position = "fixed";
+    area.style.opacity = "0";
+    document.body.appendChild(area);
+    area.select();
+    let ok = false;
+    try {
+      ok = document.execCommand("copy");
+    } catch {
+      ok = false;
+    }
+    area.remove();
+    return ok;
+  }
+
   async function copyEmail() {
+    let ok = false;
     try {
       await navigator.clipboard.writeText(EMAIL);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 2200);
+      ok = true;
     } catch {
-      window.location.href = `mailto:${EMAIL}`;
+      ok = legacyCopy(EMAIL);
+    }
+
+    if (ok) {
+      setCopyFailed(false);
+      setCopied(false);
+      // restart the stamp even on repeat clicks
+      window.requestAnimationFrame(() => setCopied(true));
+      window.setTimeout(() => setCopied(false), 2600);
+      return;
+    }
+
+    // Copying is blocked: select the address so Ctrl+C / long-press works.
+    setCopyFailed(true);
+    const text = document.querySelector(".contact-address");
+    if (text) {
+      const range = document.createRange();
+      range.selectNodeContents(text);
+      const selection = window.getSelection();
+      selection?.removeAllRanges();
+      selection?.addRange(range);
     }
   }
 
@@ -361,7 +401,7 @@ export default function Home() {
           </h2>
           <div className="contact-row">
             <button type="button" className="btn btn-ink contact-email" onClick={copyEmail}>
-              {copied ? "Email copied" : EMAIL}
+              <span className="contact-address">{EMAIL}</span>
             </button>
             <a className="btn btn-line" href={LINKEDIN} target="_blank" rel="noopener noreferrer">
               LinkedIn
@@ -371,7 +411,11 @@ export default function Home() {
             </a>
           </div>
           <p className="contact-hint" aria-live="polite">
-            {copied ? "It's on your clipboard. Talk soon." : "Click the address to copy it."}
+            {copied
+              ? "Copied to your clipboard. Talk soon."
+              : copyFailed
+                ? "Your browser blocked copying. The address is selected, so press Ctrl+C."
+                : "Click the address to copy it."}
           </p>
         </section>
       </main>

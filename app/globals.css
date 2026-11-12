@@ -1062,6 +1062,11 @@ a {
   min-width: 290px;
 }
 
+.contact-address {
+  -webkit-user-select: all;
+  user-select: all;
+}
+
 .contact-stamp {
   position: absolute;
   top: 34px;
