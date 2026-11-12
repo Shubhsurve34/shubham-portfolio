@@ -1,11 +1,11 @@
 /* ==========================================================================
    ShubhTechIN house style
-   Shared by the portfolio, DropNexa and every later product.
+   Shared by the portfolio, Dropzuu and every later product.
 
    - Paper and ink base, the same on every site.
    - Lime from the ShubhTechIN logo is the house mark: a highlighter fill,
      never text colour on paper.
-   - Each product adds one accent ink (DropNexa: carbon ultramarine).
+   - Each product adds one accent ink (Dropzuu: carbon ultramarine).
    - Things are objects: passes, tickets, stamps. Motion answers an action,
      plus one entrance moment per page.
    ========================================================================== */
@@ -25,7 +25,7 @@
   --lime-deep: #8fc31a;
 
   /* Product accents */
-  --carbon: #2e37d4; /* DropNexa */
+  --carbon: #2e37d4; /* Dropzuu */
 
   /* Stamp inks (shared) */
   --ok: #2c7a4b;
@@ -582,7 +582,7 @@ a {
   opacity: 0.85;
 }
 
-/* Rubber stamp (shared with DropNexa) */
+/* Rubber stamp (shared with Dropzuu) */
 .stamp {
   display: inline-block;
   padding: 4px 10px;
