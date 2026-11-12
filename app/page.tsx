@@ -29,7 +29,7 @@ const projects: Project[] = [
     role: "Solo build",
     status: "Live",
     accent: "carbon",
-    link: { href: "https://dropnexa-app.vercel.app", label: "Open Dropzuu" },
+    link: { href: "https://dropzuu.vercel.app", label: "Open Dropzuu" },
   },
   {
     name: "CrowdGrid",
@@ -424,7 +424,7 @@ export default function Home() {
         <Wordmark />
         <p>
           Also from ShubhTechIN:{" "}
-          <a href="https://dropnexa-app.vercel.app" target="_blank" rel="noopener noreferrer">
+          <a href="https://dropzuu.vercel.app" target="_blank" rel="noopener noreferrer">
             Dropzuu
           </a>
         </p>
