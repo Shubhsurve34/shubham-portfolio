@@ -1,27 +1,30 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Anybody, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 
 const siteUrl = "https://shubham-portfolio-mu-puce.vercel.app";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// ShubhTechIN house type, shared with DropNexa and every later product:
+// Anybody (variable width) for display, Hanken Grotesk for reading.
+const display = Anybody({
+  variable: "--font-display",
   subsets: ["latin"],
+  axes: ["wdth"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const body = Hanken_Grotesk({
+  variable: "--font-body",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "ShubhTechIN | Shubham Surve — Developer Portfolio",
+    default: "Shubham Surve | ShubhTechIN",
     template: "%s | ShubhTechIN",
   },
   description:
-    "Explore Shubham Surve's computer engineering portfolio, technical skills, projects, and learning journey in software development.",
+    "Shubham Surve, computer engineering student in Mumbai. Projects, skills and resume. Open to internships.",
   applicationName: "ShubhTechIN",
   alternates: {
     canonical: "/",
@@ -37,24 +40,24 @@ export const metadata: Metadata = {
     type: "website",
     url: siteUrl,
     siteName: "ShubhTechIN",
-    title: "ShubhTechIN | Shubham Surve — Developer Portfolio",
+    title: "Shubham Surve | ShubhTechIN",
     description:
-      "Computer engineering student exploring software development through practical projects and continuous learning.",
+      "Computer engineering student in Mumbai building DropNexa and other projects. Open to internships.",
     locale: "en_IN",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "ShubhTechIN developer portfolio by Shubham Surve",
+        alt: "ShubhTechIN, the portfolio of Shubham Surve",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ShubhTechIN | Shubham Surve — Developer Portfolio",
+    title: "Shubham Surve | ShubhTechIN",
     description:
-      "Computer engineering student exploring software development through practical projects and continuous learning.",
+      "Computer engineering student in Mumbai building DropNexa and other projects. Open to internships.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -63,13 +66,14 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#E3E8E4",
+};
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className={`${display.variable} ${body.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }

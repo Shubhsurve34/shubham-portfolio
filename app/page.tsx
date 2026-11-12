@@ -1,430 +1,435 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
+import { Seen, StretchName, WorkPass } from "./effects";
 
-const projects = [
+const EMAIL = "shubhamsurve571@gmail.com";
+const GITHUB = "https://github.com/Shubhsurve34";
+const LINKEDIN = "https://www.linkedin.com/in/shubhamsurve11";
+const RESUME = "/Shubham-Surve-Resume.pdf";
+
+type Project = {
+  name: string;
+  kind: string;
+  summary: string;
+  stack: string[];
+  role: string;
+  status: "Live" | "In progress" | "Next up";
+  accent: "carbon" | "lime" | "ink";
+  link?: { href: string; label: string };
+};
+
+const projects: Project[] = [
   {
-    number: "01",
-    type: "CAPSTONE · TEAM PROJECT",
-    title: "CrowdGrid",
-    description:
-      "A final-year Diploma in Computer Engineering capstone project being developed collaboratively with my team. More details will be added as the project progresses.",
-    stack: "Team capstone · Details in progress",
-    status: "In development",
+    name: "DropNexa",
+    kind: "File and text sharing",
+    summary:
+      "Send text, links and files through links that expire, lock with a password or open only once. It has accounts, drop inboxes that collect files from anyone, end-to-end encryption in the browser and Premium plans billed through Razorpay.",
+    stack: ["Next.js", "TypeScript", "Firebase", "Upstash", "Razorpay"],
+    role: "Solo build",
+    status: "Live",
+    accent: "carbon",
+    link: { href: "https://dropnexa-app.vercel.app", label: "Open DropNexa" },
   },
   {
-    number: "02",
-    type: "WEB APPLICATION",
-    title: "DropNexa",
-    description:
-      "Building a dependable file-sharing experience with a focus on consistency, usability and thoughtful error handling.",
-    stack: "Next.js · TypeScript · Firebase",
-    status: "In development",
+    name: "CrowdGrid",
+    kind: "Pilgrim services for the Simhastha Kumbh",
+    summary:
+      "Verified stays, free meals, shuttles to the ghats and 24/7 SOS for pilgrims at the Simhastha Kumbh 2026–28 in Nashik and Trimbakeshwar. Everything a family books sits under one QR pass that works offline. Our final-year capstone, where I worked across the frontend and backend.",
+    stack: [],
+    role: "Full-stack, team capstone",
+    status: "Live",
+    accent: "ink",
+    link: { href: "https://crowdgrid.vercel.app", label: "Open CrowdGrid" },
   },
   {
-    number: "03",
-    type: "FOOTBALL ANALYTICS",
-    title: "Tactora",
-    description:
-      "A football tactics planning tool for creating formations, arranging player positions and visualizing match strategies.",
-    stack: "React · SVG · Firebase",
-    status: "In development",
+    name: "Tactora",
+    kind: "Football tactics board",
+    summary:
+      "A board for setting formations, placing players and sketching match plans, so a tactic can be shared as easily as a link.",
+    stack: ["React", "SVG", "Firebase"],
+    role: "Solo build",
+    status: "Next up",
+    accent: "ink",
+  },
+  {
+    name: "ShubhTechIN",
+    kind: "This site",
+    summary:
+      "My portfolio and the home of everything I make. It sets the look DropNexa and my later projects share.",
+    stack: ["Next.js", "TypeScript", "CSS"],
+    role: "Solo build",
+    status: "Live",
+    accent: "lime",
   },
 ];
 
-const skillGroups = [
-  {
-    title: "PROGRAMMING",
-    skills: ["C", "C++", "Java", "Python"],
-  },
-  {
-    title: "WEB DEVELOPMENT",
-    skills: ["HTML", "CSS", "JavaScript", "React", "Next.js"],
-  },
-  {
-    title: "DATABASES & TOOLS",
-    skills: ["SQL", "Git", "GitHub", "VS Code"],
-  },
-  {
-    title: "WORKING STYLE",
-    skills: [
-      "Problem-solving",
-      "Teamwork",
-      "Adaptability",
-      "Willingness to learn",
-    ],
-  },
+const skills = [
+  { title: "Languages", items: ["C", "C++", "Java", "Python"] },
+  { title: "Web", items: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js"] },
+  { title: "Data and tools", items: ["SQL", "Firebase", "Git", "GitHub", "VS Code"] },
 ];
+
+const semesters = [
+  { label: "Semester 1", score: 79.75 },
+  { label: "Semester 2", score: 81.24 },
+  { label: "Semester 3", score: 86.25 },
+  { label: "Semester 4", score: 87.66 },
+];
+
+function Wordmark() {
+  return (
+    <span className="wordmark" aria-label="ShubhTechIN">
+      ShubhTech<span className="wordmark-in">IN</span>
+    </span>
+  );
+}
 
 export default function Home() {
+  const [copied, setCopied] = useState(false);
   const [year, setYear] = useState("2026");
-  const [emailCopied, setEmailCopied] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    setYear(String(new Date().getFullYear()));
+    const id = window.setTimeout(() => setYear(String(new Date().getFullYear())), 0);
+    return () => window.clearTimeout(id);
   }, []);
 
-  useEffect(() => {
-    const elements = document.querySelectorAll(
-      ".content-section, .skills-section, .projects-heading, .project-card, .contact-section"
-    );
+  const [copyFailed, setCopyFailed] = useState(false);
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  function legacyCopy(text: string) {
+    const area = document.createElement("textarea");
+    area.value = text;
+    area.setAttribute("readonly", "");
+    area.style.position = "fixed";
+    area.style.opacity = "0";
+    document.body.appendChild(area);
+    area.select();
+    let ok = false;
+    try {
+      ok = document.execCommand("copy");
+    } catch {
+      ok = false;
+    }
+    area.remove();
+    return ok;
+  }
+
+  async function copyEmail() {
+    let ok = false;
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      ok = true;
+    } catch {
+      ok = legacyCopy(EMAIL);
+    }
+
+    if (ok) {
+      setCopyFailed(false);
+      setCopied(false);
+      // restart the stamp even on repeat clicks
+      window.requestAnimationFrame(() => setCopied(true));
+      window.setTimeout(() => setCopied(false), 2600);
       return;
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("in-view");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12 }
-    );
-
-    elements.forEach((element) => {
-      element.classList.add("scroll-reveal");
-      observer.observe(element);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  async function copyEmail() {
-    try {
-      await navigator.clipboard.writeText("shubhamsurve571@gmail.com");
-      setEmailCopied(true);
-      window.setTimeout(() => setEmailCopied(false), 2200);
-    } catch {
-      window.prompt(
-        "Copy your email address:",
-        "shubhamsurve571@gmail.com"
-      );
+    // Copying is blocked: select the address so Ctrl+C / long-press works.
+    setCopyFailed(true);
+    const text = document.querySelector(".contact-address");
+    if (text) {
+      const range = document.createRange();
+      range.selectNodeContents(text);
+      const selection = window.getSelection();
+      selection?.removeAllRanges();
+      selection?.addRange(range);
     }
   }
 
   return (
-    <main className="site theme-dark">
-      
-<header className="nav">
-  <a
-    href="#home"
-    className="brand"
-    aria-label="ShubhTechIN home"
-    onClick={() => setMenuOpen(false)}
-  >
-    <img
-      src="/images/shubhtechin-logo.png"
-      alt="ShubhTechIN"
-      className="brand-logo"
-    />
-  </a>
+    <>
+      <a className="skip" href="#main">
+        Skip to content
+      </a>
 
-  <button
-    type="button"
-    className="mobile-menu-button"
-    aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
-    aria-expanded={menuOpen}
-    aria-controls="main-navigation"
-    onClick={() => setMenuOpen((open) => !open)}
-  >
-    <span className={menuOpen ? "menu-icon menu-icon-open" : "menu-icon"}>
-      <span />
-      <span />
-      <span />
-    </span>
-    <span className="mobile-menu-label">
-      {menuOpen ? "Close" : "Menu"}
-    </span>
-  </button>
-
-  <nav
-    id="main-navigation"
-    className={`nav-links${menuOpen ? " nav-links-open" : ""}`}
-    aria-label="Main navigation"
-  >
-    <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
-    <a href="#skills" onClick={() => setMenuOpen(false)}>Skills</a>
-    <a href="#projects" onClick={() => setMenuOpen(false)}>Projects</a>
-    <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
-    <a
-      href="https://www.linkedin.com/in/shubhamsurve11"
-      target="_blank"
-      rel="noopener noreferrer"
-      onClick={() => setMenuOpen(false)}
-    >
-      LinkedIn
-    </a>
-  </nav>
-</header>
-
-
-      <section id="home" className="hero section-wrap">
-        <div className="hero-copy">
-          <p className="eyebrow reveal delay-1">
-            COMPUTER ENGINEERING · WEB DEVELOPMENT
-          </p>
-
-          <h1 className="hero-title reveal delay-2">
-            Learning to build.
-            <br />
-            <span>Building to learn.</span>
-          </h1>
-
-          <p className="hero-description reveal delay-3">
-            I'm Shubham, a computer engineering student exploring
-            software development by turning ideas into useful,
-            well-crafted digital products.
-          </p>
-
-          <div className="hero-actions reveal delay-3">
-            <a className="primary-link" href="#projects">
-              Explore my work
+      <header className="top">
+        <div className="top-inner">
+          <a href="#main" className="top-brand">
+            <Wordmark />
+          </a>
+          <nav aria-label="Main" className="top-nav">
+            <a href="#work">Work</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href={RESUME} download className="top-resume">
+              Resume
             </a>
-
-            <a className="text-link" href="#about">
-              A little about me
-            </a>
-
-            <a
-              className="text-link"
-              href="/Shubham-Surve-Resume.pdf"
-              download="Shubham-Surve-Resume.pdf"
-            >
-              Download Resume
-            </a>
-          </div>
+          </nav>
         </div>
+      </header>
 
-        <div className="hero-art reveal delay-3" aria-hidden="true">
-          <div className="orbit orbit-one" />
-          <div className="orbit orbit-two" />
-
-          <div className="orbit-core">
-            <span>&lt;/&gt;</span>
-          </div>
-
-          <span className="orbit-node node-one">JS</span>
-          <span className="orbit-node node-two">{"{}"}</span>
-          <span className="orbit-node node-three">✳</span>
-
-          <span className="orbit-caption">
-            IDEAS · CODE · PRODUCTS
-          </span>
-        </div>
-
-        <aside className="hero-aside reveal delay-3">
-          <div className="availability">
-            <span className="status-dot" />
-            CURRENTLY BUILDING
-          </div>
-
-          <div className="aside-rule" />
-
-          <p className="aside-label">MY APPROACH</p>
-
-          <p className="aside-text">
-            Understand the problem.
-            <br />
-            Build the simplest solution.
-            <br />
-            Make it work reliably.
-          </p>
-
-          <div className="aside-rule" />
-
-          <p className="aside-label">CURRENT FOCUS</p>
-
-          <div className="interest-list">
-            <span>Software development</span>
-            <span>Team capstone project</span>
-            <span>Internship opportunities</span>
-          </div>
-        </aside>
-
-        <div className="hero-index">
-          <span>PROJECTS</span>
-          <span>01 — 03</span>
-        </div>
-      </section>
-
-      <section id="about" className="content-section section-wrap">
-        <div className="section-heading">
-          <p className="eyebrow">01 / ABOUT</p>
-
-          <h2>
-            Curious by nature.
-            <br />
-            <span>Practical by design.</span>
-          </h2>
-        </div>
-
-        <div className="about-copy">
-          <p>
-            I'm a Diploma in Computer Engineering student at
-            St. Xavier’s Technical Institute, Mumbai, building my
-            software development skills through practical work.
-          </p>
-
-          <p>
-            I enjoy breaking problems into manageable steps,
-            learning new tools and turning ideas into useful
-            applications. I value clear communication, teamwork
-            and improving a product through feedback.
-          </p>
-
-          <p>
-            I'm currently developing CrowdGrid with my team as our
-            final-year diploma capstone project. I'm also looking
-            for opportunities to learn from real-world engineering
-            work and contribute as an intern.
-          </p>
-        </div>
-      </section>
-
-      <section id="skills" className="skills-section section-wrap">
-        <div className="section-heading">
-          <p className="eyebrow">02 / SKILLS & EDUCATION</p>
-
-          <h2>
-            Tools I work with.
-            <br />
-            <span>Knowledge I'm building.</span>
-          </h2>
-        </div>
-
-        <div className="skills-grid">
-          {skillGroups.map((group) => (
-            <article className="skill-card" key={group.title}>
-              <p className="eyebrow">{group.title}</p>
-
-              <div className="skill-tags">
-                {group.skills.map((skill) => (
-                  <span className="skill-tag" key={skill}>
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <div className="education-card">
-          <p className="eyebrow">EDUCATION</p>
-          <h3>Diploma in Computer Engineering</h3>
-          <p>St. Xavier’s Technical Institute, Mumbai</p>
-        </div>
-      </section>
-
-      <section id="projects" className="projects-section">
-        <div className="section-wrap">
-          <div className="projects-heading">
-            <div>
-              <p className="eyebrow">03 / SELECTED WORK</p>
-
-              <h2>
-                Things I'm building<span>.</span>
-              </h2>
+      <main id="main">
+        {/* Hero: who, plus the work pass */}
+        <section className="hero wrap">
+          <div className="hero-copy">
+            <p className="hero-hello">Hi, I&apos;m</p>
+            <StretchName lines={["Shubham", "Surve"]} />
+            <p className="hero-line">
+              I study computer engineering in Mumbai and build web apps people can actually use.
+              Right now that&apos;s <a href="#work">DropNexa</a>, a way to send things that
+              don&apos;t stick around.
+            </p>
+            <div className="hero-actions">
+              <a className="btn btn-ink" href="#work">
+                See my work
+              </a>
+              <a className="btn btn-line" href={RESUME} download>
+                Download resume
+              </a>
             </div>
+          </div>
 
-            <p className="section-note">
-              Individual builds and a team capstone.
-              <br />
-              All currently in development.
+          <WorkPass
+            front={
+              <>
+                <span className="pass-hole" aria-hidden="true" />
+                <header className="pass-head">
+                  <Wordmark />
+                  <span className="pass-kind">Work pass</span>
+                </header>
+                <dl className="pass-fields">
+                  <div className="pass-field pass-field-wide">
+                    <dt>Name</dt>
+                    <dd className="pass-name">Shubham Anant Surve</dd>
+                  </div>
+                  <div className="pass-field pass-field-wide">
+                    <dt>Studying</dt>
+                    <dd>Diploma in Computer Engineering</dd>
+                  </div>
+                  <div className="pass-field pass-field-wide">
+                    <dt>At</dt>
+                    <dd>St. Xavier&apos;s Technical Institute, Mumbai</dd>
+                  </div>
+                  <div className="pass-field">
+                    <dt>Builds with</dt>
+                    <dd>Next.js and TypeScript</dd>
+                  </div>
+                  <div className="pass-field">
+                    <dt>Latest score</dt>
+                    <dd>87.66%</dd>
+                  </div>
+                </dl>
+                <footer className="pass-foot">
+                  <div className="pass-valid">
+                    <span>Valid from {year}</span>
+                    <span className="pass-code" aria-hidden="true" />
+                  </div>
+                  <span className="stamp pass-stamp">
+                    Open to
+                    <br />
+                    internships
+                  </span>
+                </footer>
+              </>
+            }
+            back={
+              <>
+                <span className="pass-hole" aria-hidden="true" />
+                <header className="pass-head">
+                  <Wordmark />
+                  <span className="pass-kind">Back of pass</span>
+                </header>
+                <div className="pass-found">
+                  <p className="pass-found-label">If found, please return to</p>
+                  <p className="pass-found-name">Shubham Surve</p>
+                </div>
+                <ul className="pass-links">
+                  <li>
+                    <a href={`mailto:${EMAIL}`}>Email</a>
+                    <span>{EMAIL}</span>
+                  </li>
+                  <li>
+                    <a href={LINKEDIN} target="_blank" rel="noopener noreferrer">
+                      LinkedIn
+                    </a>
+                    <span>shubhamsurve11</span>
+                  </li>
+                  <li>
+                    <a href={GITHUB} target="_blank" rel="noopener noreferrer">
+                      GitHub
+                    </a>
+                    <span>Shubhsurve34</span>
+                  </li>
+                  <li>
+                    <a href={RESUME} download>
+                      Resume
+                    </a>
+                    <span>PDF, one page</span>
+                  </li>
+                </ul>
+                <p className="pass-back-note">No reward offered. A reply would be nice, though.</p>
+              </>
+            }
+          />
+        </section>
+
+        {/* Work */}
+        <section id="work" className="section wrap" aria-labelledby="work-title">
+          <div className="section-head">
+            <h2 id="work-title">Things I&apos;ve built</h2>
+            <p>
+              Three live, including our team capstone, and one on the bench. Every new one gets the
+              same look, so you can tell they come from the same place.
             </p>
           </div>
 
-          <div className="project-list">
+          <ol className="tickets">
             {projects.map((project) => (
-              <article className="project-card" key={project.number}>
-                <div className="project-number">
-                  {project.number}
+              <Seen as="li" key={project.name} className={`ticket accent-${project.accent}`}>
+                <div className="ticket-main">
+                  <p className="ticket-kind">{project.kind}</p>
+                  <h3 className="ticket-name">{project.name}</h3>
+                  <p className="ticket-summary">{project.summary}</p>
+                  {project.stack.length > 0 ? (
+                    <ul className="ticket-stack" aria-label="Built with">
+                      {project.stack.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  ) : null}
+                  {project.link ? (
+                    <a
+                      className="ticket-link"
+                      href={project.link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {project.link.label}
+                    </a>
+                  ) : null}
                 </div>
-
-                <div className="project-main">
-                  <p className="project-type">{project.type}</p>
-
-                  <h3>{project.title}</h3>
-
-                  <p className="project-description">
-                    {project.description}
-                  </p>
-
-                  <p className="project-stack">{project.stack}</p>
-                </div>
-
-                <div className="project-meta">
-                  <span className="project-status">
-                    <span className="status-dot" />
+                <div className="ticket-stub">
+                  <span className={`stamp stamp-${project.status === "Live" ? "live" : "wait"}`}>
                     {project.status}
                   </span>
+                  <span className="ticket-role">{project.role}</span>
                 </div>
-              </article>
+              </Seen>
             ))}
+          </ol>
+        </section>
+
+        {/* About + skills */}
+        <section id="about" className="section wrap about" aria-labelledby="about-title">
+          <div className="section-head">
+            <h2 id="about-title">Curious, practical, still learning</h2>
           </div>
 
-          <p className="projects-footnote">
-            These projects are works in progress. More details and
-            live demo links will be added as the applications develop
-            and are deployed.
+          <div className="about-grid">
+            <div className="about-copy">
+              <p>
+                I&apos;m in the final year of a Diploma in Computer Engineering at St. Xavier&apos;s
+                Technical Institute, Mumbai. I learn best by building: pick a real problem, break it
+                into small steps, ship something that works, then make it better.
+              </p>
+              <p>
+                DropNexa is where most of that has happened. It taught me authentication, rate
+                limiting, encryption, payments and how much care goes into an error message. With my
+                team I built CrowdGrid, our capstone, as a full-stack developer.
+              </p>
+              <p>
+                I&apos;m looking for an internship where I can work on real software with people
+                who know more than I do. I work well in a team, I communicate clearly, and I like
+                being given a hard problem.
+              </p>
+            </div>
+
+            <div className="skills">
+              {skills.map((group) => (
+                <div key={group.title} className="skill-group">
+                  <h3>{group.title}</h3>
+                  <p>{group.items.join(", ")}</p>
+                </div>
+              ))}
+              <div className="skill-group">
+                <h3>How I work</h3>
+                <p>Communication, teamwork, leadership, problem-solving and managing my time.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Education */}
+        <section className="section wrap" aria-labelledby="edu-title">
+          <div className="section-head">
+            <h2 id="edu-title">Education</h2>
+          </div>
+
+          <div className="edu-grid">
+            <div className="edu-card">
+              <h3>Diploma in Computer Engineering</h3>
+              <p className="edu-where">St. Xavier&apos;s Technical Institute, Mumbai</p>
+              <Seen as="ol" className="grades">
+                {semesters.map((sem, i) => (
+                  <li key={sem.label} style={{ ["--i" as string]: i }}>
+                    <span className="grade-label">{sem.label}</span>
+                    <span className="grade-track">
+                      <span className="grade-bar" style={{ width: `${sem.score}%` }} />
+                    </span>
+                    <span className="grade-value">{sem.score.toFixed(2)}%</span>
+                  </li>
+                ))}
+              </Seen>
+              <p className="edu-note">Up every semester so far.</p>
+            </div>
+
+            <div className="edu-card edu-card-quiet">
+              <h3>CBSE Secondary</h3>
+              <p className="edu-where">SSL English School</p>
+              <p className="edu-score">
+                73.80%<span>March 2021</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact */}
+        <section id="contact" className="contact wrap" aria-labelledby="contact-title">
+          <span className={`stamp contact-stamp${copied ? " is-on" : ""}`} aria-hidden="true">
+            Copied
+          </span>
+          <h2 id="contact-title">
+            Have an internship, a project or a question? Write to me.
+          </h2>
+          <div className="contact-row">
+            <button type="button" className="btn btn-ink contact-email" onClick={copyEmail}>
+              <span className="contact-address">{EMAIL}</span>
+            </button>
+            <a className="btn btn-line" href={LINKEDIN} target="_blank" rel="noopener noreferrer">
+              LinkedIn
+            </a>
+            <a className="btn btn-line" href={GITHUB} target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
+          </div>
+          <p className="contact-hint" aria-live="polite">
+            {copied
+              ? "Copied to your clipboard. Talk soon."
+              : copyFailed
+                ? "Your browser blocked copying. The address is selected, so press Ctrl+C."
+                : "Click the address to copy it."}
           </p>
-        </div>
-      </section>
+        </section>
+      </main>
 
-      <section id="contact" className="contact-section section-wrap">
-        <p className="eyebrow">04 / CONTACT</p>
-
-        <h2>
-          Have an idea?
-          <br />
-          <span>Let's talk.</span>
-        </h2>
-
-        <p className="contact-description">
-          I'm open to internship opportunities where I can contribute,
-          learn from experienced developers and keep improving my
-          software engineering skills. Feel free to reach out.
+      <footer className="foot wrap">
+        <Wordmark />
+        <p>
+          Also from ShubhTechIN:{" "}
+          <a href="https://dropnexa-app.vercel.app" target="_blank" rel="noopener noreferrer">
+            DropNexa
+          </a>
         </p>
-
-        <div className="contact-actions">
-          <button className="primary-link" onClick={copyEmail}>
-            {emailCopied ? "Copied!" : "Email"}
-          </button>
-
-          <a
-            href="https://github.com/Shubhsurve34"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="secondary-link"
-          >
-            GitHub
-          </a>
-
-          <a
-            href="https://www.linkedin.com/in/shubhamsurve11"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="secondary-link"
-          >
-            LinkedIn
-          </a>
-        </div>
-      </section>
-
-      <footer className="footer section-wrap">
-        <a href="#home" className="wordmark">
-          ShubhTechIN<span>.</span>
-        </a>
-
-        <p>Designed with intention. Built while learning.</p>
-        <p>© {year} ShubhTechIN</p>
+        <p>© {year} Shubham Surve</p>
       </footer>
-    </main>
+    </>
   );
 }
-
