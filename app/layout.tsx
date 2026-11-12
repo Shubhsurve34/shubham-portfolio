@@ -4,7 +4,7 @@ import "./globals.css";
 
 const siteUrl = "https://shubham-portfolio-mu-puce.vercel.app";
 
-// ShubhTechIN house type, shared with DropNexa and every later product:
+// ShubhTechIN house type, shared with Dropzuu and every later product:
 // Anybody (variable width) for display, Hanken Grotesk for reading.
 const display = Anybody({
   variable: "--font-display",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     siteName: "ShubhTechIN",
     title: "Shubham Surve | ShubhTechIN",
     description:
-      "Computer engineering student in Mumbai building DropNexa and other projects. Open to internships.",
+      "Computer engineering student in Mumbai building Dropzuu and other projects. Open to internships.",
     locale: "en_IN",
     images: [
       {
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Shubham Surve | ShubhTechIN",
     description:
-      "Computer engineering student in Mumbai building DropNexa and other projects. Open to internships.",
+      "Computer engineering student in Mumbai building Dropzuu and other projects. Open to internships.",
     images: ["/og-image.png"],
   },
   robots: {
