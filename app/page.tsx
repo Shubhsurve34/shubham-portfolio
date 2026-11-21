@@ -32,6 +32,17 @@ const projects: Project[] = [
     link: { href: "https://dropzuu.vercel.app", label: "Open Dropzuu" },
   },
   {
+    name: "Tactora",
+    kind: "Football tactics board",
+    summary:
+      "Build a move step by step and play it back as an animation. It reads the game live as you drag players: who controls the space, the offside line, team shape and the gaps between lines in metres, cover shadows and open passing lanes. Moves share as a link and export as a 30 fps video.",
+    stack: ["Next.js", "TypeScript", "SVG", "WebCodecs"],
+    role: "Solo build",
+    status: "Live",
+    accent: "ink",
+    link: { href: "https://tactora-gray.vercel.app", label: "Open Tactora" },
+  },
+  {
     name: "CrowdGrid",
     kind: "Pilgrim services for the Simhastha Kumbh",
     summary:
@@ -41,16 +52,6 @@ const projects: Project[] = [
     status: "Live",
     accent: "ink",
     link: { href: "https://crowdgrid.vercel.app", label: "Open CrowdGrid" },
-  },
-  {
-    name: "Tactora",
-    kind: "Football tactics board",
-    summary:
-      "A board for setting formations, placing players and sketching match plans, so a tactic can be shared as easily as a link.",
-    stack: ["React", "SVG", "Firebase"],
-    role: "Solo build",
-    status: "Next up",
-    accent: "ink",
   },
   {
     name: "ShubhTechIN",
