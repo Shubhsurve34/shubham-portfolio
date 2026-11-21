@@ -182,9 +182,6 @@ export default function Home() {
               <a className="btn btn-ink" href="#work">
                 See my work
               </a>
-              <a className="btn btn-line" href={RESUME} download>
-                Download resume
-              </a>
             </div>
           </div>
 
