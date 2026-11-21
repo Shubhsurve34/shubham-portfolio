@@ -913,6 +913,14 @@ a {
   box-shadow: var(--shadow-card);
 }
 
+.exp-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
 .edu-card-quiet {
   background: transparent;
   box-shadow: none;
@@ -1152,7 +1160,8 @@ a {
     width: min(var(--wrap), 100% - 32px);
   }
 
-  .top-nav a[href="#about"] {
+  .top-nav a[href="#about"],
+  .top-nav a[href="#experience"] {
     display: none;
   }
 

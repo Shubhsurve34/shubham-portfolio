@@ -157,6 +157,7 @@ export default function Home() {
           </a>
           <nav aria-label="Main" className="top-nav">
             <a href="#work">Work</a>
+            <a href="#experience">Experience</a>
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
             <a href={RESUME} download className="top-resume">
@@ -315,6 +316,23 @@ export default function Home() {
               </Seen>
             ))}
           </ol>
+        </section>
+
+        {/* Experience */}
+        <section id="experience" className="section wrap" aria-labelledby="experience-title">
+          <div className="section-head">
+            <h2 id="experience-title">Internship experience</h2>
+          </div>
+
+          <Seen as="div" className="edu-card exp-card">
+            <div className="exp-head">
+              <div>
+                <h3>Digital Marketing Intern</h3>
+                <p className="edu-where">Cyhex Infotech Pvt. Ltd.</p>
+              </div>
+              <span className="stamp stamp-live">Internship</span>
+            </div>
+          </Seen>
         </section>
 
         {/* About + skills */}
