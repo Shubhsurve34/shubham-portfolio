@@ -51,7 +51,7 @@ const projects: Project[] = [
     role: "Full-stack, team capstone",
     status: "Live",
     accent: "ink",
-    link: { href: "https://crowdgrid.vercel.app", label: "Open CrowdGrid" },
+    link: { href: "https://crowdgridevents.vercel.app", label: "Open CrowdGrid" },
   },
   {
     name: "ShubhTechIN",
